@@ -1,6 +1,9 @@
 import React, { useContext, useState } from "react";
 import UserContext from "./userContext";
 import { useHistory } from "react-router-dom";
+import { useFormik } from "formik";
+import * as yup from "yup";
+
 function UserCreate() {
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
@@ -24,12 +27,14 @@ function UserCreate() {
     console.log("Data => ", data.userData);
     history.push("/user");
   };
+ 
   return (
     <div className="container">
       <h1>User Form</h1>
-
+      {/* <form onSubmit={formik.handleSubmit}> */}
       <div className="row">
         <div className="col-lg-6">
+       
           <label>Name</label>
           <input
             type="text"
@@ -37,6 +42,7 @@ function UserCreate() {
             className="form-control"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            
           />
         </div>
         <div className="col-lg-6">
@@ -71,6 +77,7 @@ function UserCreate() {
           />
         </div>
       </div>
+      {/* </form> */}
     </div>
   );
 }
