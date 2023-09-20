@@ -21,11 +21,14 @@ const books = [{
 const formValidationSchema = yup.object({
   title: yup.string().min(5, "Need minimum 5 characters for title")
     .required("Required to fill title"),
-  author: yup.string().min(5, "Need minimum 5 characters for author name").max(15, "Maximum charcters exceeds for author")
+  author: yup.string().min(5, "Need minimum 5 characters for author name")
+    .max(15, "Maximum charcters exceeds for author")
     .required("Required to fill author"),
-  isbn_no: yup.string().min(10, "Need minimum 5 characters for isbn_no").max(17, "Maximum charcters exceeds for isbn_no")
+  isbn_no: yup.string().min(10, "Need minimum 10 characters for isbn_no")
+    .max(17, "Maximum charcters exceeds for isbn_no")
     .required("Required to fill isbn_no"),
-  date: yup.string().min(4, "Provide publication year alone")
+  date: yup.string().min(4, "Provide publication year (eg:2020)")
+    .max(4, "Maximum characters exceeds (eg:2020)")
     .required("Required to fill year of publication")
 })
 
@@ -91,6 +94,7 @@ export function BookRecord() {
                         const newauthor = prompt('Enter author:', data.author);
                         const newisbin = prompt('Enter isbn_no:', data.isbn_no);
                         const newdate = prompt('Enter publication year:', data.date);
+
                         if (newtitle !== null && newauthor !== null && newisbin !== null && newdate !== null) {
                           editBook(index, newtitle, newauthor, newisbin, newdate);
                         }
@@ -106,24 +110,48 @@ export function BookRecord() {
       </div>
 
       <h1 className="h3 mb-3 text-gray-800">Add book record</h1>
+
       <form onSubmit={formik.handleSubmit}>
-        <input class="form-control" type="text" placeholder="Title" id="title" name="title" onChange={formik.handleChange}
-          onBlur={formik.handleBlur} value={formik.values.title} /><br />
+        <input class="form-control" type="text"
+          placeholder="Title"
+          id="title"
+          name="title"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.title} /><br />
+
         {formik.touched.title && formik.errors.title ? formik.errors.title : ""}
 
-        <input class="form-control" type="text" placeholder="Author" id="author" name="author" onChange={formik.handleChange}
-          onBlur={formik.handleBlur} value={formik.values.author} /><br />
+        <input class="form-control" type="text"
+          placeholder="Author"
+          id="author"
+          name="author"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.author} /><br />
+
         {formik.touched.author && formik.errors.author ? formik.errors.author : ""}
 
-        <input class="form-control" type="text" placeholder="ISBN_no" id="isbn_no" name="isbn_no" onChange={formik.handleChange}
-          onBlur={formik.handleBlur} value={formik.values.isbn_no} /><br />
+        <input class="form-control" type="text"
+          placeholder="ISBN_no"
+          id="isbn_no"
+          name="isbn_no"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.isbn_no} /><br />
+
         {formik.touched.isbn_no && formik.errors.isbn_no ? formik.errors.isbn_no : ""}
 
-        <input class="form-control" type="number" placeholder="Enter year" id="date" name="date" onChange={formik.handleChange}
+        <input class="form-control" type="number"
+          placeholder="Enter year"
+          id="date"
+          name="date"
+          onChange={formik.handleChange}
           onBlur={formik.handleBlur} value={formik.values.date} /><br />
+
         {formik.touched.date && formik.errors.date ? formik.errors.date : ""}<br />
 
-        <button className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" type="submit" >
+        <button className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" type="submit">
           <i className="fas fa-download fa-sm text-white-50"></i> Add Book
         </button>
       </form>

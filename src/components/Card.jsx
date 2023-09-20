@@ -4,7 +4,7 @@ function Card() {
   const data = [
     {
       text: "T-Books",
-      content: " 40",
+      content: " 30",
       color: "primary",
     },
     {

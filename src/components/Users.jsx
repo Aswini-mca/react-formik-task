@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "./userContext";
+
+//user component
 function Users() {
   const data = useContext(UserContext);
 
@@ -15,17 +17,7 @@ function Users() {
           <i className="fas fa-download fa-sm text-white-50"></i> Create User
         </Link>
       </div>
-      <br/>
-
-      {/* <h1 className="h3 mb-2 text-gray-800">Tables</h1>
-      <p className="mb-4">
-        DataTables is a third party plugin that is used to generate the demo
-        table below. For more information about DataTables, please visit the{" "}
-        <a target="_blank" href="https://datatables.net">
-          official DataTables documentation
-        </a>
-      </p> */}
-
+      <br />
       <div className="card shadow mb-4">
         <div className="card-header py-3">
           <h6 className="m-0 font-weight-bold text-primary">
